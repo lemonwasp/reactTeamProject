@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
-import PeoplePage from './pages/PeoplePage';
-import IntroducePage from './pages/IntroducePage';
-import EventsBoardPage from './pages/EventsBoardPage';
+import LoginPage from './Login/LoginPage';
+import HomePage from './HomeP/HomePage';
+import PeoplePage from './People/PeoplePage';
+import IntroducePage from './Introduce/IntroducePage';
+import EventsBoardPage from './Events Board/EventsBoardPage';
 import './App.css';
 
 const App = () => {
