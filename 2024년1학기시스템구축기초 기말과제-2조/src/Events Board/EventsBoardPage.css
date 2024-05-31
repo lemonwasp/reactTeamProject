@@ -1,0 +1,69 @@
+.events-board-page {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.events-list {
+  margin: 0 10%;
+}
+
+.event-sizer,
+.event-card {
+  width: calc(33.333% - 20px); /* 각 카드의 너비를 조정 */
+  margin-bottom: 20px; /* 각 카드 사이의 간격 */
+  box-sizing: border-box; /* 전체 크기 조정 */
+}
+
+.event-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+}
+
+.event-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.25em;
+}
+
+.event-card .event-date {
+  color: grey;
+  font-size: 0.85em;
+  margin: 0 0 10px 0;
+}
+
+.event-card .event-image {
+  width: 100%;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.event-card .event-description {
+  margin: 10px 0 0 0;
+  font-size: 0.9em;
+  flex-grow: 1;
+}
+
+.event-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: #e25555;
+}
+
+.comment-input {
+  flex-grow: 1;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}

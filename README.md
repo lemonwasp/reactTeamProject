@@ -31,11 +31,6 @@
 **EventsBoardPage.js:** 이벤트 게시판 페이지 컴포넌트. 이벤트 리스트를 게시판 형태로 표시<br>
 **EventsBoardPage.css:** 이벤트 게시판 페이지 컴포넌트의 스타일 시트<br>
 
-**PostList.js:** 게시물 리스트 컴포넌트. 게시물 목록을 렌더링<br>
-**PostList.css:** 게시물 리스트 컴포넌트의 스타일 시트<br>
-**CommentList.js:** 댓글 리스트 컴포넌트. 댓글 목록을 렌더링<br>
-**CommentList.css:** 댓글 리스트 컴포넌트의 스타일 시트<br>
-
 ### components/
 
 재사용 가능한 UI 컴포넌트들이 위치하는 폴더

@@ -1,5 +1,5 @@
 import React from 'react';
-import './EventsBoardPage.css';
+import './LoginForm.css';
 
 const LoginForm = () => {
   return (

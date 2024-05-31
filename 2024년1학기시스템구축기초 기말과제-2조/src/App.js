@@ -11,26 +11,25 @@ import './App.css';
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/people" element={<PeoplePage />} />
-          <Route path="/introduce" element={<IntroducePage />} />
-          <Route path="/events-board" element={<EventsBoardPage />} />
-        </Routes>
-      </Layout>
+      <AppContent />
     </Router>
   );
 };
 
-const Layout = ({ children }) => {
+const AppContent = () => {
   const location = useLocation();
+
   return (
     <>
       {location.pathname !== '/login' && <NavBar />}
-      {children}
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/people" element={<PeoplePage />} />
+        <Route path="/introduce" element={<IntroducePage />} />
+        <Route path="/events-board" element={<EventsBoardPage />} />
+      </Routes>
     </>
   );
 };
