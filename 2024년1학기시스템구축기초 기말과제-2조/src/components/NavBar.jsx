@@ -1,9 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './NavBar.css';
 import peopleImage from '../assets/images/people.png';
 
 const NavBar = () => {
+  const location = useLocation();
+
   return (
     <header>
       <h1>
@@ -26,6 +28,13 @@ const NavBar = () => {
           <li>
             <NavLink to="/events-board">Events Board</NavLink>
           </li>
+          {location.pathname === '/events-board' && (
+            <li>
+              <NavLink to="/create-post" className="create-post-button">
+                Create Post
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
