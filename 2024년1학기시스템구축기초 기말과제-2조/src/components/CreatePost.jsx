@@ -1,11 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CreatePost.css';
 import peopleImage from '../assets/images/people.png';
 
 const CreatePost = () => {
+  const navigate = useNavigate();
+
+  const handlePostClick = (event) => {
+    event.preventDefault();
+    navigate('/events-board');
+  };
+
+  const handleHeaderClick = () => {
+    navigate('/home');
+  };
+
   return (
     <div className="create-post-page">
-      <div className="create-post-header">
+      <div className="create-post-header" onClick={handleHeaderClick} style={{ cursor: 'pointer' }}>
         <h1>
           <img src={peopleImage} alt="Team Logo" className="team-logo" />
           Team Name
@@ -15,7 +27,7 @@ const CreatePost = () => {
         <h2>Create Post</h2>
       </div>
       <div className="create-post-container">
-        <form className="create-post-form">
+        <form className="create-post-form" onSubmit={handlePostClick}>
           <label>
             Date
             <input type="date" name="date" required />
