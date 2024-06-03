@@ -35,6 +35,13 @@ const NavBar = () => {
               </NavLink>
             </li>
           )}
+          {location.pathname === '/introduce' && (
+            <li>
+              <NavLink to="/introduce" className="create-category-button">
+                Create Category
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
