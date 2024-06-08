@@ -1,90 +1,44 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
+import imagesLoaded from 'imagesloaded'; // 이미지 로드 확인 라이브러리
 import { useNavigate, useLocation } from 'react-router-dom';
 import './EventsBoardPage.css';
-import eventImage1 from '../assets/images/event1.png';
-import eventImage2 from '../assets/images/event2.png';
-import eventImage3 from '../assets/images/event3.png';
-
-// 초기 이벤트 데이터 배열
-const initialEvents = [
-  {
-    id: 1,
-    title: 'AAAAAAA',
-    date: '2024-06-01',
-    description: 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z',
-    comments: [
-      { user: 'User1', date: '2024-06-01', text: 'Comment 1' },
-      { user: 'User2', date: '2024-06-01', text: 'Comment 2' },
-    ],
-  },
-  {
-    id: 2,
-    title: 'BBBB',
-    date: '2024-06-10',
-    description:
-      'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z',
-    image: eventImage1,
-    comments: [],
-  },
-  {
-    id: 3,
-    title: 'CCCCCCCCCCCCC',
-    date: '2024-06-20',
-    description: 'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z',
-    image: eventImage2,
-    comments: [],
-  },
-  {
-    id: 4,
-    title: 'DDDDD',
-    date: '2024-06-25',
-    description:
-      'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z',
-    image: eventImage3,
-    comments: [],
-  },
-  {
-    id: 5,
-    title: 'EEEEEEEEEEEEEEEEEEE',
-    date: '2024-07-01',
-    description:
-      'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z',
-    comments: [],
-  },
-  {
-    id: 6,
-    title: 'FFF',
-    date: '2024-07-05',
-    description:
-      'a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z',
-    comments: [],
-  },
-];
 
 const EventsBoardPage = () => {
   const gridRef = useRef(null); // Masonry 그리드 참조
   const msnry = useRef(null); // Masonry 인스턴스 참조
-  const [events, setEvents] = useState(initialEvents); // 이벤트 상태
+  const [events, setEvents] = useState([]); // 이벤트 상태
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, target: null, type: '' }); // 컨텍스트 메뉴 상태
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
   const location = useLocation(); // 현재 위치 정보 훅
 
-  // Masonry 레이아웃 초기화 및 이미지 로드 후 레이아웃 적용
-  useEffect(() => {
+  const getData = async () => {
+    const res = await fetch('http://localhost:3001/boards').then((res) => res.json());
+
+    setEvents(res);
+
+    // Masonry 초기화 및 레이아웃 적용
     msnry.current = new Masonry(gridRef.current, {
       itemSelector: '.event-card',
       columnWidth: '.event-sizer',
       percentPosition: true,
       gutter: 20,
     });
+  };
 
-    imagesLoaded(gridRef.current, () => {
-      msnry.current.layout();
-    });
+  // 이미지가 모두 로드된 후 Masonry 레이아웃 적용
+  imagesLoaded(gridRef.current, () => {
+    msnry.current.layout();
+  });
 
-    return () => msnry.current.destroy();
+  // Masonry 레이아웃 초기화 및 이미지 로드 후 레이아웃 적용
+  useEffect(() => {
+    getData();
+    return () => {
+      if (msnry.current) {
+        msnry.current.destroy();
+      }
+    };
   }, []);
 
   // location.state에 업데이트된 이벤트가 있으면 상태를 업데이트
@@ -141,20 +95,30 @@ const EventsBoardPage = () => {
   };
 
   // 삭제 기능
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (contextMenu.type === 'event') {
       const confirmDelete = window.confirm('Are you sure you want to delete this post?');
       if (confirmDelete) {
-        const updatedEvents = events.filter((event) => event !== contextMenu.target);
-        setEvents(updatedEvents);
+        const response = await fetch(`http://localhost:3001/boards/${contextMenu.target.id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          const updatedEvents = events.filter((event) => event.id !== contextMenu.target.id);
+          setEvents(updatedEvents);
+        } else {
+          console.error('Failed to delete the event');
+        }
       }
     } else if (contextMenu.type === 'comment') {
       const confirmDelete = window.confirm('Are you sure you want to delete this comment?');
       if (confirmDelete) {
-        const updatedEvents = events.map((event) => ({
-          ...event,
-          comments: event.comments?.filter((comment) => comment !== contextMenu.target),
-        }));
+        const updatedEvents = events.map((event) => {
+          if (event.id === contextMenu.target.eventId) {
+            const updatedComments = event.comments.filter((comment) => comment.id !== contextMenu.target.id);
+            return { ...event, comments: updatedComments };
+          }
+          return event;
+        });
         setEvents(updatedEvents);
       }
     }

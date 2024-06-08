@@ -9,6 +9,7 @@ const CreatePost = () => {
   const [title, setTitle] = useState(''); // 제목 상태
   const [description, setDescription] = useState(''); // 설명 상태
   const [date, setDate] = useState(''); // 날짜 상태
+  const [id, setId] = useState(null); // ID 상태
 
   // location.state에 기존 이벤트 정보가 있으면 상태를 업데이트
   useEffect(() => {
@@ -17,19 +18,46 @@ const CreatePost = () => {
       setTitle(event.title);
       setDescription(event.description);
       setDate(event.date);
+      setId(event.id);
     }
   }, [location.state]);
 
-  const handlePostClick = (event) => {
+  const handlePostClick = async (event) => {
     event.preventDefault();
-    const updatedEvent = {
-      ...location.state.event,
+    const newEvent = {
+      id,
       title,
       description,
       date,
     };
+
+    if (id) {
+      // 기존 게시글 수정 (PUT 요청)
+      await fetch(`http://localhost:3001/boards/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEvent),
+      });
+    } else {
+      // 새로운 게시글 추가 (POST 요청)
+      // 먼저 현재 존재하는 모든 게시글을 가져와서 최대 id를 찾습니다.
+      const response = await fetch('http://localhost:3001/boards');
+      const boards = await response.json();
+      const maxId = boards.reduce((max, board) => Math.max(max, board.id), 0);
+      newEvent.id = (maxId + 1).toString();
+      await fetch('http://localhost:3001/boards', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEvent),
+      });
+    }
+
     // 게시글 업데이트 로직 추가
-    navigate('/events-board', { state: { updatedEvent } });
+    navigate('/events-board');
   };
 
   const handleHeaderClick = () => {
