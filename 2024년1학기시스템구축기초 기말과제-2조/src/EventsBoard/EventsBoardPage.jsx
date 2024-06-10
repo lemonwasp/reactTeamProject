@@ -1,23 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded'; // 이미지 로드 확인 라이브러리
+import imagesLoaded from 'imagesloaded';
 import { useNavigate, useLocation } from 'react-router-dom';
+import EventCard from './EventCard';
 import './EventsBoardPage.css';
 
 const EventsBoardPage = () => {
-  const gridRef = useRef(null); // Masonry 그리드 참조
-  const msnry = useRef(null); // Masonry 인스턴스 참조
-  const [events, setEvents] = useState([]); // 이벤트 상태
-  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, target: null, type: '' }); // 컨텍스트 메뉴 상태
-  const navigate = useNavigate(); // 페이지 이동을 위한 훅
-  const location = useLocation(); // 현재 위치 정보 훅
+  const gridRef = useRef(null);
+  const msnry = useRef(null);
+  const [events, setEvents] = useState([]);
+  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, target: null, type: '' });
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const getData = async () => {
-    const res = await fetch('http://localhost:3001/boards').then((res) => res.json());
+    const eventsRes = await fetch('http://localhost:3001/boards').then((res) => res.json());
+    const commentsRes = await fetch('http://localhost:3001/comments').then((res) => res.json());
 
-    setEvents(res);
+    const eventsWithComments = eventsRes.map((event) => ({
+      ...event,
+      comments: commentsRes.filter((comment) => comment['board-id'] === event.id),
+    }));
 
-    // Masonry 초기화 및 레이아웃 적용
+    setEvents(eventsWithComments);
+
     msnry.current = new Masonry(gridRef.current, {
       itemSelector: '.event-card',
       columnWidth: '.event-sizer',
@@ -26,12 +32,14 @@ const EventsBoardPage = () => {
     });
   };
 
-  // 이미지가 모두 로드된 후 Masonry 레이아웃 적용
-  imagesLoaded(gridRef.current, () => {
-    msnry.current.layout();
-  });
+  useEffect(() => {
+    imagesLoaded(gridRef.current, () => {
+      if (msnry.current) {
+        msnry.current.layout();
+      }
+    });
+  }, [events]);
 
-  // Masonry 레이아웃 초기화 및 이미지 로드 후 레이아웃 적용
   useEffect(() => {
     getData();
     return () => {
@@ -41,7 +49,6 @@ const EventsBoardPage = () => {
     };
   }, []);
 
-  // location.state에 업데이트된 이벤트가 있으면 상태를 업데이트
   useEffect(() => {
     if (location.state && location.state.updatedEvent) {
       const updatedEvent = location.state.updatedEvent;
@@ -51,14 +58,12 @@ const EventsBoardPage = () => {
     }
   }, [location.state]);
 
-  // Masonry 레이아웃 업데이트
   const handleUpdateLayout = () => {
     if (msnry.current) {
       msnry.current.layout();
     }
   };
 
-  // 컨텍스트 메뉴를 여는 함수
   const handleContextMenu = (event, target, type) => {
     event.preventDefault();
     setContextMenu({
@@ -70,35 +75,44 @@ const EventsBoardPage = () => {
     });
   };
 
-  // 컨텍스트 메뉴를 닫는 함수
   const handleCloseContextMenu = () => {
     setContextMenu({ visible: false, x: 0, y: 0, target: null, type: '' });
   };
 
-  // 수정 기능
-  const handleEdit = () => {
+  const handleEdit = async () => {
     if (contextMenu.type === 'event') {
       navigate('/create-post', { state: { event: contextMenu.target } });
     } else if (contextMenu.type === 'comment') {
-      const updatedEvents = events.map((event) => ({
-        ...event,
-        comments: event.comments?.map((comment) =>
-          comment === contextMenu.target
-            ? { ...comment, text: prompt('Enter new comment', comment.text) || comment.text }
-            : comment
-        ),
-      }));
-      setEvents(updatedEvents);
+      const updatedText = prompt('댓글을 수정하세요', contextMenu.target.text);
+      if (updatedText !== null) {
+        const updatedComment = { ...contextMenu.target, text: updatedText };
+        const response = await fetch(`http://localhost:3001/comments/${contextMenu.target.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedComment),
+        });
+
+        if (response.ok) {
+          const updatedEvents = events.map((event) => ({
+            ...event,
+            comments: event.comments.map((comment) => (comment.id === updatedComment.id ? updatedComment : comment)),
+          }));
+          setEvents(updatedEvents);
+        } else {
+          console.error('Failed to update comment');
+        }
+      }
     }
-    handleUpdateLayout();
     handleCloseContextMenu();
+    handleUpdateLayout();
   };
 
-  // 삭제 기능
   const handleDelete = async () => {
     try {
       if (contextMenu.type === 'event') {
-        const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+        const confirmDelete = window.confirm('이 게시글을 삭제하시겠습니까?');
         if (confirmDelete) {
           const response = await fetch(`http://localhost:3001/boards/${contextMenu.target.id}`, {
             method: 'DELETE',
@@ -108,10 +122,14 @@ const EventsBoardPage = () => {
           setEvents(updatedEvents);
         }
       } else if (contextMenu.type === 'comment') {
-        const confirmDelete = window.confirm('Are you sure you want to delete this comment?');
+        const confirmDelete = window.confirm('이 댓글을 삭제하시겠습니까?');
         if (confirmDelete) {
+          const response = await fetch(`http://localhost:3001/comments/${contextMenu.target.id}`, {
+            method: 'DELETE',
+          });
+          if (!response.ok) throw new Error('Failed to delete the comment');
           const updatedEvents = events.map((event) => {
-            if (event.id === contextMenu.target.eventId) {
+            if (event.id === contextMenu.target['board-id']) {
               const updatedComments = event.comments.filter((comment) => comment.id !== contextMenu.target.id);
               return { ...event, comments: updatedComments };
             }
@@ -120,8 +138,8 @@ const EventsBoardPage = () => {
           setEvents(updatedEvents);
         }
       }
-      handleUpdateLayout();
       handleCloseContextMenu();
+      handleUpdateLayout();
     } catch (error) {
       console.error(error);
     }
@@ -137,107 +155,10 @@ const EventsBoardPage = () => {
       </div>
       {contextMenu.visible && (
         <div className="context-menu" style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <button onClick={handleEdit}>수정</button>
+          <button onClick={handleDelete}>삭제</button>
         </div>
       )}
-    </div>
-  );
-};
-
-const EventCard = ({ event, onUpdate, onContextMenu }) => {
-  const [likes, setLikes] = useState(0); // 좋아요 상태
-  const [commentInput, setCommentInput] = useState(''); // 댓글 입력 상태
-  const [comments, setComments] = useState(event.comments || []); // 댓글 상태
-  const [showAllComments, setShowAllComments] = useState(false); // 댓글 확장 상태
-
-  const userData = JSON.parse(localStorage.getItem('user')); // 사용자 정보
-
-  // 좋아요 클릭 핸들러
-  const handleLike = () => {
-    setLikes(likes + 1);
-  };
-
-  // 댓글 입력 변경 핸들러
-  const handleCommentChange = (e) => {
-    setCommentInput(e.target.value);
-  };
-
-  // 댓글 추가 핸들러
-  const handleAddComment = () => {
-    if (commentInput.trim() !== '') {
-      const newComment = {
-        text: commentInput,
-        user: userData.name, // 사용자 이름
-        date: new Date().toLocaleString(),
-      };
-      setComments([...comments, newComment]);
-      setCommentInput('');
-      setTimeout(onUpdate, 300);
-    }
-  };
-
-  // Enter 키를 눌렀을 때 댓글 추가
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleAddComment();
-    }
-  };
-
-  // 댓글 확장/축소 핸들러
-  const handleShowComments = () => {
-    setShowAllComments(!showAllComments);
-    setTimeout(onUpdate, 300);
-  };
-
-  // 표시할 댓글 목록 설정
-  const commentsToShow = showAllComments ? comments.slice(0, 5) : comments.slice(0, 2);
-
-  return (
-    <div
-      className={`event-card ${showAllComments ? 'expanded' : ''}`}
-      onContextMenu={(e) => onContextMenu(e, event, 'event')}
-    >
-      <h2>{event.title}</h2>
-      <p className="event-user">{userData.name}</p>
-      <p className="event-date">
-        <strong>Date:</strong> {event.date}
-      </p>
-      {event.image && <img src={event.image} alt={event.title} className="event-image" />}
-      <p className="event-description">{event.description}</p>
-      <div className="event-actions">
-        <button onClick={handleLike} className="like-button">
-          ❤️ {likes}
-        </button>
-        <input
-          type="text"
-          placeholder="Add a comment"
-          value={commentInput}
-          onChange={handleCommentChange}
-          onKeyPress={handleKeyPress}
-          className="comment-input"
-        />
-        <button onClick={handleAddComment} className="add-comment-button">
-          Add
-        </button>
-      </div>
-      <div className="comments-section">
-        <div className={`comments-list ${showAllComments ? 'expanded' : ''}`}>
-          {commentsToShow.map((comment, index) => (
-            <div key={index} className="comment" onContextMenu={(e) => onContextMenu(e, comment, 'comment')}>
-              <p>
-                <strong>{comment.user}</strong> ({comment.date}):
-              </p>
-              <p>{comment.text}</p>
-            </div>
-          ))}
-        </div>
-        {comments.length > 2 && (
-          <button onClick={handleShowComments} className="show-comments-button">
-            {showAllComments ? 'Show Less' : 'Show More'}
-          </button>
-        )}
-      </div>
     </div>
   );
 };
