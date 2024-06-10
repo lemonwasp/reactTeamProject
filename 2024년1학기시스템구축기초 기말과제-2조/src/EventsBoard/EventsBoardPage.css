@@ -68,7 +68,6 @@
   justify-content: space-between; /* 요소들을 양 끝으로 정렬 */
   align-items: center; /* 요소들을 세로축 가운데 정렬 */
   margin-top: 20px; /* 위쪽 간격 설정 */
-  bottom: 10px; /* 아래쪽 간격 설정 */
 }
 
 /* 좋아요 버튼의 스타일 */
