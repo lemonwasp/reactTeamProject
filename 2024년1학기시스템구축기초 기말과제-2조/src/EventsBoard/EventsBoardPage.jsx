@@ -96,34 +96,35 @@ const EventsBoardPage = () => {
 
   // 삭제 기능
   const handleDelete = async () => {
-    if (contextMenu.type === 'event') {
-      const confirmDelete = window.confirm('Are you sure you want to delete this post?');
-      if (confirmDelete) {
-        const response = await fetch(`http://localhost:3001/boards/${contextMenu.target.id}`, {
-          method: 'DELETE',
-        });
-        if (response.ok) {
+    try {
+      if (contextMenu.type === 'event') {
+        const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+        if (confirmDelete) {
+          const response = await fetch(`http://localhost:3001/boards/${contextMenu.target.id}`, {
+            method: 'DELETE',
+          });
+          if (!response.ok) throw new Error('Failed to delete the event');
           const updatedEvents = events.filter((event) => event.id !== contextMenu.target.id);
           setEvents(updatedEvents);
-        } else {
-          console.error('Failed to delete the event');
+        }
+      } else if (contextMenu.type === 'comment') {
+        const confirmDelete = window.confirm('Are you sure you want to delete this comment?');
+        if (confirmDelete) {
+          const updatedEvents = events.map((event) => {
+            if (event.id === contextMenu.target.eventId) {
+              const updatedComments = event.comments.filter((comment) => comment.id !== contextMenu.target.id);
+              return { ...event, comments: updatedComments };
+            }
+            return event;
+          });
+          setEvents(updatedEvents);
         }
       }
-    } else if (contextMenu.type === 'comment') {
-      const confirmDelete = window.confirm('Are you sure you want to delete this comment?');
-      if (confirmDelete) {
-        const updatedEvents = events.map((event) => {
-          if (event.id === contextMenu.target.eventId) {
-            const updatedComments = event.comments.filter((comment) => comment.id !== contextMenu.target.id);
-            return { ...event, comments: updatedComments };
-          }
-          return event;
-        });
-        setEvents(updatedEvents);
-      }
+      handleUpdateLayout();
+      handleCloseContextMenu();
+    } catch (error) {
+      console.error(error);
     }
-    handleUpdateLayout();
-    handleCloseContextMenu();
   };
 
   return (
@@ -150,6 +151,8 @@ const EventCard = ({ event, onUpdate, onContextMenu }) => {
   const [comments, setComments] = useState(event.comments || []); // 댓글 상태
   const [showAllComments, setShowAllComments] = useState(false); // 댓글 확장 상태
 
+  const userData = JSON.parse(localStorage.getItem('user')); // 사용자 정보
+
   // 좋아요 클릭 핸들러
   const handleLike = () => {
     setLikes(likes + 1);
@@ -165,7 +168,7 @@ const EventCard = ({ event, onUpdate, onContextMenu }) => {
     if (commentInput.trim() !== '') {
       const newComment = {
         text: commentInput,
-        user: 'User', // 사용자 이름
+        user: userData.name, // 사용자 이름
         date: new Date().toLocaleString(),
       };
       setComments([...comments, newComment]);
@@ -196,6 +199,7 @@ const EventCard = ({ event, onUpdate, onContextMenu }) => {
       onContextMenu={(e) => onContextMenu(e, event, 'event')}
     >
       <h2>{event.title}</h2>
+      <p className="event-user">{userData.name}</p>
       <p className="event-date">
         <strong>Date:</strong> {event.date}
       </p>

@@ -41,6 +41,13 @@
   margin: 0 0 10px 0; /* 아래쪽에만 간격 설정 */
 }
 
+/* 이벤트 사용자 스타일 */
+.event-user {
+  color: grey; /* 글꼴 색상 설정 */
+  font-size: 0.85em; /* 글꼴 크기 설정 */
+  margin: 0; /* 간격 없음 */
+}
+
 /* 이벤트 이미지의 스타일 */
 .event-card .event-image {
   width: 100%; /* 너비를 부모 요소에 맞춤 */

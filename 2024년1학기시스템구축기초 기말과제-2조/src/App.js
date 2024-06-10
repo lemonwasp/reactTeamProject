@@ -7,6 +7,7 @@ import PeoplePage from './People/PeoplePage';
 import IntroducePage from './Introduce/IntroducePage';
 import EventsBoardPage from './EventsBoard/EventsBoardPage';
 import CreatePost from './components/CreatePost';
+import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 const App = () => {
@@ -24,13 +25,48 @@ const AppContent = () => {
     <>
       {location.pathname !== '/login' && location.pathname !== '/create-post' && <NavBar />}
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/people" element={<PeoplePage />} />
-        <Route path="/introduce" element={<IntroducePage />} />
-        <Route path="/events-board" element={<EventsBoardPage />} />
-        <Route path="/create-post" element={<CreatePost />} />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/people"
+          element={
+            <PrivateRoute>
+              <PeoplePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/introduce"
+          element={
+            <PrivateRoute>
+              <IntroducePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/events-board"
+          element={
+            <PrivateRoute>
+              <EventsBoardPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/create-post"
+          element={
+            <PrivateRoute>
+              <CreatePost />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </>
   );

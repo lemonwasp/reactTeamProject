@@ -1,17 +1,10 @@
 {
   "boards": [
     {
-      "id": "1",
+      "user-id": "1",
       "title": "AAAAAAA",
       "date": "2024-06-01",
       "description": "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
-    },
-    {
-      "id": "3",
-      "title": "CCCCCCCCCCCCC",
-      "date": "2024-06-20",
-      "description": "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z",
-      "image": "/images/event2.png"
     },
     {
       "id": "5",
@@ -22,14 +15,8 @@
     {
       "id": "6",
       "title": "ㅇ",
-      "description": "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z",
+      "description": "ㅇ나란엉ㄴ래ㅑㄷㄹㄹㄷㄷㅈㄹ",
       "date": "2024-07-05"
-    },
-    {
-      "id": "8",
-      "title": "ㄴㄴ",
-      "description": "ㄴㄴㄴ",
-      "date": "2024-06-09"
     },
     {
       "id": "9",
@@ -38,7 +25,6 @@
       "date": "2024-06-09"
     }
   ],
-
   "comments": [
     {
       "id": "1",
@@ -48,13 +34,42 @@
       "board-id": "1"
     }
   ],
-
   "users": [
     {
-      "id": "1",
-      "name": "Lim",
-      "user-id": "dlat.th",
-      "password": "thdus"
+      "user-id": 1,
+      "name": "Lim Soyeon",
+      "email": "dlat.th45@gmail.com",
+      "password": "dlathdus"
+    },
+    {
+      "user-id": 2,
+      "name": "Hong",
+      "email": "Hong@gmail.com",
+      "password": "1234"
+    },
+    {
+      "user-id": 3,
+      "name": "Kwon",
+      "email": "Kwon@gmail.com",
+      "password": "1234"
+    },
+    {
+      "user-id": 4,
+      "name": "Park",
+      "email": "Park@gmail.com",
+      "password": "1234"
+    },
+    {
+      "user-id": 5,
+      "name": "Choi",
+      "email": "Choi@gmail.com",
+      "password": "1234"
+    },
+    {
+      "user-id": 6,
+      "name": "Jang",
+      "email": "Jang@gmail.com",
+      "password": "1234"
     }
   ]
 }

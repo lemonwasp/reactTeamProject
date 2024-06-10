@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './CreatePost.css';
-import peopleImage from '../assets/images/people.png';
 
 const CreatePost = () => {
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
@@ -68,7 +67,7 @@ const CreatePost = () => {
     <div className="create-post-page">
       <div className="create-post-header" onClick={handleHeaderClick} style={{ cursor: 'pointer' }}>
         <h1>
-          <img src={peopleImage} alt="Team Logo" className="team-logo" />
+          <img src={`${process.env.PUBLIC_URL}/images/people.png`} alt="Team Logo" className="team-logo" />
           Team Name
         </h1>
       </div>
