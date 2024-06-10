@@ -1,37 +1,69 @@
 {
   "boards": [
     {
-      "user-id": "1",
+      "id": "1",
+      "user-id": 1,
       "title": "AAAAAAA",
       "date": "2024-06-01",
       "description": "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
     },
     {
-      "id": "5",
-      "title": "EEEEEEEEEEEEEEEEEEE",
-      "date": "2024-07-01",
-      "description": "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, za, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
+      "id": "2",
+      "title": "TEST",
+      "description": "test\ntest\ntest",
+      "date": "2024-07-01"
     },
     {
-      "id": "6",
-      "title": "ㅇ",
-      "description": "ㅇ나란엉ㄴ래ㅑㄷㄹㄹㄷㄷㅈㄹ",
-      "date": "2024-07-05"
-    },
-    {
-      "id": "9",
+      "id": "4",
+      "user-id": 5,
       "title": "ㅁㅁㅁ",
       "description": "ㅁㅁㅁ",
       "date": "2024-06-09"
+    },
+    {
+      "id": "5",
+      "user-id": 4,
+      "title": "test",
+      "description": "test",
+      "date": "2024-06-07"
+    },
+    {
+      "id": "6",
+      "title": "리액트 마지막 점검 날",
+      "description": "파일 병합, 최종 수정하고 테스트 해보기\n데이터베이스 구술 테스트 시작\n\n일본어 대본 완성,\n4과 발표 준비\n",
+      "date": "2024-06-11"
+    },
+    {
+      "id": "7",
+      "title": "리액트 피피티 만들기",
+      "description": "각자 자기 페이지 분담하여 만들기\n",
+      "date": "2024-06-12"
     }
   ],
   "comments": [
     {
-      "id": "1",
-      "text": "ss",
-      "user-id": "1",
-      "date": "2024. 6. 9. 오전 2:48:33",
-      "board-id": "1"
+      "id": "2",
+      "text": "테스트",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 11. 오전 12:13:04",
+      "user-id": 1,
+      "board-id": "5"
+    },
+    {
+      "id": "3",
+      "text": "수정",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 11. 오전 12:13:06",
+      "user-id": 1,
+      "board-id": "5"
+    },
+    {
+      "id": "4",
+      "text": "삭제",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 11. 오전 12:13:08",
+      "user-id": 1,
+      "board-id": "5"
     }
   ],
   "users": [
@@ -39,37 +71,43 @@
       "user-id": 1,
       "name": "Lim Soyeon",
       "email": "dlat.th45@gmail.com",
-      "password": "dlathdus"
+      "password": "dlathdus",
+      "id": "3aad"
     },
     {
       "user-id": 2,
       "name": "Hong",
       "email": "Hong@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "id": "ce21"
     },
     {
       "user-id": 3,
       "name": "Kwon",
       "email": "Kwon@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "id": "03a7"
     },
     {
       "user-id": 4,
       "name": "Park",
       "email": "Park@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "id": "7742"
     },
     {
       "user-id": 5,
       "name": "Choi",
       "email": "Choi@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "id": "5bec"
     },
     {
       "user-id": 6,
       "name": "Jang",
       "email": "Jang@gmail.com",
-      "password": "1234"
+      "password": "1234",
+      "id": "743f"
     }
   ],
   "post": [
@@ -91,6 +129,3 @@
       "description": "도톤보리, 덴덴타운, 유니버셜 스튜디오, ...",
       "imageUrl": "https://cdn.pixabay.com/photo/2020/05/30/01/03/shinkansen-5237269_1280.jpg"
     }
-  ]
-}
-
