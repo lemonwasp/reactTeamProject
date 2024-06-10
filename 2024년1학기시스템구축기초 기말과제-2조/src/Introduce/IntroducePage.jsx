@@ -4,10 +4,9 @@ import Modal from 'react-modal';
 import AddInfo from './AddInfo';
 import UseFetch from './UseFetch';
 
-Modal.setAppElement('#root'); 
+Modal.setAppElement('#root');
 
-function App() {
-
+function IntroducePage() {
   const TestData = UseFetch('http://localhost:3001/post');
 
   const [activeBox, setActiveBox] = useState(null);
@@ -19,7 +18,7 @@ function App() {
         id: item.id,
         categoryName: item.categoryName,
         description: item.description,
-        imageUrl: item.imageUrl
+        imageUrl: item.imageUrl,
       }));
       setBoxes(formattedData);
     }
@@ -35,7 +34,10 @@ function App() {
     const updateWidth = () => {
       const containerMaxWidth = window.innerWidth * 0.85;
       document.documentElement.style.setProperty('--container-width', `${containerMaxWidth}px`);
-      document.documentElement.style.setProperty('--box-width', `${(containerMaxWidth - (boxes.length - 1) * 10) / boxes.length}px`);
+      document.documentElement.style.setProperty(
+        '--box-width',
+        `${(containerMaxWidth - (boxes.length - 1) * 10) / boxes.length}px`
+      );
     };
     updateWidth();
     window.addEventListener('resize', updateWidth);
@@ -62,12 +64,12 @@ function App() {
   const deleteBox = async () => {
     try {
       const response = await fetch(`http://localhost:3001/post/${boxes[boxToDelete].id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
       });
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      setBoxes(prevBoxes => prevBoxes.filter((_, i) => i !== boxToDelete));
+      setBoxes((prevBoxes) => prevBoxes.filter((_, i) => i !== boxToDelete));
       setBoxToDelete(null);
       setModalIsOpen(false);
     } catch (error) {
@@ -84,7 +86,7 @@ function App() {
   };
 
   const addBoxInfo = (info) => {
-    setBoxes(prevBoxes => [...prevBoxes, info]);
+    setBoxes((prevBoxes) => [...prevBoxes, info]);
     closeInfoModal();
   };
 
@@ -98,20 +100,20 @@ function App() {
   };
 
   const updateBoxInfo = (updatedInfo) => {
-    setBoxes(prevBoxes =>
-      prevBoxes.map((box, index) =>
-        index === boxToEdit ? updatedInfo : box
-      )
-    );
+    setBoxes((prevBoxes) => prevBoxes.map((box, index) => (index === boxToEdit ? updatedInfo : box)));
     closeEditModal();
   };
 
   return (
     <>
-      <div className='head'></div>
-      <div className='container'>
-        <div className='topBox'>
-          <img className="imageThumbnail" src="https://cdn.pixabay.com/photo/2021/06/12/02/38/cherry-blossoms-6329828_1280.jpg" alt='top' />
+      <div className="head"></div>
+      <div className="container">
+        <div className="topBox">
+          <img
+            className="imageThumbnail"
+            src="https://cdn.pixabay.com/photo/2021/06/12/02/38/cherry-blossoms-6329828_1280.jpg"
+            alt="top"
+          />
           <div className="topBoxOverlay">
             <div className="topBoxText">
               <span>Japan</span>
@@ -119,14 +121,14 @@ function App() {
             </div>
           </div>
         </div>
-        <div className='box-container'>
+        <div className="box-container">
           {boxes.map((box, index) => (
             <div
               key={index}
               className={`box ${activeBox === index ? 'active' : ''}`}
               onMouseOver={() => handleMouseOver(index)}
               onMouseOut={handleMouseOut}
-              onClick={() => openEditModal(index)} 
+              onClick={() => openEditModal(index)}
               onContextMenu={(e) => {
                 e.preventDefault();
                 openModal(index);
@@ -142,7 +144,9 @@ function App() {
             </div>
           ))}
         </div>
-        <button onClick={addBox} className='add-button'>카테고리 추가</button>
+        <button onClick={addBox} className="add-button">
+          카테고리 추가
+        </button>
       </div>
       <Modal
         isOpen={modalIsOpen}
