@@ -23,15 +23,43 @@ const AddInfo = ({ onAddBoxInfo, closeModal, initialData }) => {
     });
   };
 
-  const addBoxInfo = () => {
+  const addBoxInfo = async () => {
     if ([inputs.categoryName, inputs.description, inputs.imageUrl].includes("")) {
       setError({ title: 'Error!!!', content: '카테고리 이름, 설명, 이미지 URL을 입력하시오.' });
       return;
     }
 
-    onAddBoxInfo(inputs);
-    setInputs({ categoryName: "", description: "", imageUrl: "" });
-    closeModal();
+    try {
+      let response;
+      if (initialData) {
+        response = await fetch(`http://localhost:3001/post/${initialData.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(inputs)
+        });
+      } else {
+        response = await fetch('http://localhost:3001/post', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(inputs)
+        });
+      }
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      onAddBoxInfo(result);
+      setInputs({ categoryName: "", description: "", imageUrl: "" });
+      closeModal();
+    } catch (error) {
+      setError({ title: 'Error!!!', content: `Something went wrong: ${error.message}` });
+    }
   };
 
   const closeErrorModal = () => {
@@ -53,12 +81,13 @@ const AddInfo = ({ onAddBoxInfo, closeModal, initialData }) => {
           onChange={changeListener}
           value={inputs.categoryName}
         />
-        <input
-          type="text"
+        <textarea
           name="description"
           placeholder="설명"
           onChange={changeListener}
           value={inputs.description}
+          rows="5"
+          style={{ width: '100%' }}
         />
         <input
           type="text"
