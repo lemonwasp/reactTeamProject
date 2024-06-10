@@ -2,16 +2,29 @@ import React, { useState, useEffect } from 'react';
 import './IntroducePage.css';
 import Modal from 'react-modal';
 import AddInfo from './AddInfo';
+import UseFetch from './UseFetch';
 
 Modal.setAppElement('#root'); 
 
 function App() {
+
+  const TestData = UseFetch('http://localhost:3001/post');
+
   const [activeBox, setActiveBox] = useState(null);
-  const [boxes, setBoxes] = useState([
-    { categoryName: '여행지', description: '도톤보리, 덴덴타운, 유니버셜 스튜디오, ...', imageUrl: 'https://cdn.pixabay.com/photo/2019/04/20/11/39/japan-4141578_1280.jpg' },
-    { categoryName: '음식', description: '라멘, 스시, 장어덮밥, ...', imageUrl: 'https://cdn.pixabay.com/photo/2021/09/27/02/36/ramen-6659278_1280.jpg' },
-    { categoryName: '교통편', description: '지하철, 비행기, 배, ...', imageUrl: 'https://cdn.pixabay.com/photo/2020/05/30/01/03/shinkansen-5237269_1280.jpg' }
-  ]);
+  const [boxes, setBoxes] = useState([]);
+
+  useEffect(() => {
+    if (TestData !== undefined && TestData !== null && TestData.length > 0) {
+      const formattedData = TestData.map((item) => ({
+        id: item.id,
+        categoryName: item.categoryName,
+        description: item.description,
+        imageUrl: item.imageUrl
+      }));
+      setBoxes(formattedData);
+    }
+  }, [TestData]);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [infoModalIsOpen, setInfoModalIsOpen] = useState(false);
   const [boxToDelete, setBoxToDelete] = useState(null);
@@ -46,10 +59,20 @@ function App() {
     setModalIsOpen(false);
   };
 
-  const deleteBox = () => {
-    setBoxes(prevBoxes => prevBoxes.filter((_, i) => i !== boxToDelete));
-    setBoxToDelete(null);
-    setModalIsOpen(false);
+  const deleteBox = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/post/${boxes[boxToDelete].id}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      setBoxes(prevBoxes => prevBoxes.filter((_, i) => i !== boxToDelete));
+      setBoxToDelete(null);
+      setModalIsOpen(false);
+    } catch (error) {
+      console.error(`Error deleting box: ${error}`);
+    }
   };
 
   const addBox = () => {
@@ -154,4 +177,4 @@ function App() {
   );
 }
 
-export default App;
+export default IntroducePage;

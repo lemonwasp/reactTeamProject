@@ -109,5 +109,23 @@
       "password": "1234",
       "id": "743f"
     }
-  ]
-}
+  ],
+  "post": [
+    {
+      "id": "1",
+      "categoryName": "여행지",
+      "description": "도톤보리, 덴덴타운, 유니버셜 스튜디오, ...",
+      "imageUrl": "https://cdn.pixabay.com/photo/2019/04/20/11/39/japan-4141578_1280.jpg"
+    },
+    {
+      "id": "2",
+      "categoryName": "음식",
+      "description": "라멘, 스시, 장어덮밥, ...",
+      "imageUrl": "https://cdn.pixabay.com/photo/2021/09/27/02/36/ramen-6659278_1280.jpg"
+    },
+    {
+      "id": "3",
+      "categoryName": "교통편",
+      "description": "도톤보리, 덴덴타운, 유니버셜 스튜디오, ...",
+      "imageUrl": "https://cdn.pixabay.com/photo/2020/05/30/01/03/shinkansen-5237269_1280.jpg"
+    }
