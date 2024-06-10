@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './IntroducePage.css';
 import Modal from 'react-modal';
 import AddInfo from './AddInfo';
 import UseFetch from './UseFetch';
@@ -177,4 +177,4 @@ function App() {
   );
 }
 
-export default App;
+export default IntroducePage;
