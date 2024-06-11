@@ -26,10 +26,13 @@ header h1 img {
   width: auto;
 }
 
+.bar nav{
+  width: 100%;
+}
 nav {
   height: 50px;
+  width: 100%;
 }
-
 nav ul {
   height: 100%;
   list-style: none;
@@ -42,7 +45,9 @@ nav ul {
 }
 
 nav ul li {
+  
   margin: 0 5%;
+  width: 10%;
 }
 
 nav ul li a {

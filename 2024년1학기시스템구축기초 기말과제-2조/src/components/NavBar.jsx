@@ -10,24 +10,26 @@ const NavBar = () => {
         <img src={peopleImage} alt="Team Logo" />
         Team Name
       </h1>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/home" end>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/people">People</NavLink>
-          </li>
-          <li>
-            <NavLink to="/introduce">Introduce</NavLink>
-          </li>
-          <li>
-            <NavLink to="/events-board">Events Board</NavLink>
-          </li>
-        </ul>
-      </nav>
+      <div className='bar'>
+        <nav className='head-nav'>
+          <ul>
+            <li>
+              <NavLink to="/home" end>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/people">People</NavLink>
+            </li>
+            <li>
+              <NavLink to="/introduce">Introduce</NavLink>
+            </li>
+            <li>
+              <NavLink to="/events-board">Events Board</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };
