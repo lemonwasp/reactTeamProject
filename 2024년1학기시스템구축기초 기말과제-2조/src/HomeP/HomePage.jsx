@@ -29,7 +29,7 @@ function HomePage() {
 
   const closeModal = () => {
     setModalOpen(false);
-    setEditingScheduleId(null); 
+    setEditingScheduleId(null);
     setTitle('');
     setContent('');
   };
@@ -40,7 +40,7 @@ function HomePage() {
 
   const handleModalDateChange = (date) => {
     setSelectedModalDate(date);
-    setSelectedDate(date); 
+    setSelectedDate(date);
   };
 
   const handleSubmit = () => {
@@ -48,7 +48,7 @@ function HomePage() {
     const newScheduleData = { ...scheduleData };
 
     if (editingScheduleId) {
-      newScheduleData[formattedDate] = newScheduleData[formattedDate].map(schedule =>
+      newScheduleData[formattedDate] = newScheduleData[formattedDate].map((schedule) =>
         schedule.id === editingScheduleId ? { id: editingScheduleId, title, content } : schedule
       );
       setEditingScheduleId(null);
@@ -69,7 +69,7 @@ function HomePage() {
 
   const handleDelete = (date, id) => {
     const newScheduleData = { ...scheduleData };
-    newScheduleData[date] = newScheduleData[date].filter(schedule => schedule.id !== id);
+    newScheduleData[date] = newScheduleData[date].filter((schedule) => schedule.id !== id);
 
     if (newScheduleData[date].length === 0) {
       delete newScheduleData[date];
@@ -79,7 +79,7 @@ function HomePage() {
   };
 
   const handleEdit = (date, id) => {
-    const schedule = scheduleData[date].find(schedule => schedule.id === id);
+    const schedule = scheduleData[date].find((schedule) => schedule.id === id);
     setTitle(schedule.title);
     setContent(schedule.content);
     setSelectedModalDate(new Date(date));
@@ -94,16 +94,21 @@ function HomePage() {
   };
 
   const formatDate = (date) => {
-    return `${date.getFullYear()}-${(date.getMonth() + 1)
+    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
+      .getDate()
       .toString()
-      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+      .padStart(2, '0')}`;
   };
 
   return (
     <div>
-      <div className='calendar-container'>
-        <div className='some2'>
-          <p className='Event-title'>Team<br/><span style={{fontSize : 30, fontWeight : 700}}>Event</span></p>
+      <div className="calendar-container">
+        <div className="some2">
+          <p className="Event-title">
+            Team
+            <br />
+            <span style={{ fontSize: 30, fontWeight: 700 }}>Event</span>
+          </p>
           <button className="newschedule" onClick={handleScheduleClick}>
             <img src={ScheduleBtn} alt="Schedule Button" style={{ width: '50px', height: '50px' }} />
           </button>
@@ -118,11 +123,12 @@ function HomePage() {
               const schedules = scheduleData[formattedDate];
               return (
                 <div className="schedule-preview">
-                  {schedules && schedules.map((schedule, index) => (
-                    <div key={index} className="schedule-title">
-                      {schedule.title}
-                    </div>
-                  ))}
+                  {schedules &&
+                    schedules.map((schedule, index) => (
+                      <div key={index} className="schedule-title">
+                        {schedule.title}
+                      </div>
+                    ))}
                 </div>
               );
             }
@@ -134,29 +140,25 @@ function HomePage() {
       {modalOpen && (
         <div className="modal-overlay" onClick={handleOverlayClick}>
           <div className="modal">
-            <span className="close" onClick={closeModal}>&times;</span>
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
             <h2>{editingScheduleId ? '일정 수정' : '일정 추가'}</h2>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => handleInputChange(e, setTitle)}
-              placeholder="제목"
-            />
+            <input type="text" value={title} onChange={(e) => handleInputChange(e, setTitle)} placeholder="제목" />
             <input
               type="date"
               value={formatDate(selectedModalDate)}
               onChange={(e) => handleModalDateChange(new Date(e.target.value))}
             />
-            <textarea
-              value={content}
-              onChange={(e) => handleInputChange(e, setContent)}
-              placeholder="내용"
-            />
+            <textarea value={content} onChange={(e) => handleInputChange(e, setContent)} placeholder="내용" />
             <button className="submit-button" onClick={handleSubmit}>
               {editingScheduleId ? '수정' : '추가'}
             </button>
             {editingScheduleId && (
-              <button className="delete-button" onClick={() => handleDelete(formatDate(selectedModalDate), editingScheduleId)}>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(formatDate(selectedModalDate), editingScheduleId)}
+              >
                 삭제
               </button>
             )}
@@ -165,7 +167,7 @@ function HomePage() {
               {Object.keys(scheduleData).map((date) => (
                 <div key={date} className="schedule-item">
                   <h3>{date}</h3>
-                  {scheduleData[date].map(schedule => (
+                  {scheduleData[date].map((schedule) => (
                     <div key={schedule.id} className="schedule-entry">
                       <h4>{schedule.title}</h4>
                       <p>{schedule.content}</p>
