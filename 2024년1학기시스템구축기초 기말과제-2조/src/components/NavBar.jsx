@@ -11,6 +11,28 @@ const NavBar = () => {
         <img src={`${process.env.PUBLIC_URL}/images/people.png`} alt="Team Logo" />
         Team Name
       </h1>
+
+      <div className='bar'>
+        <nav className='head-nav'>
+          <ul>
+            <li>
+              <NavLink to="/home" end>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/people">People</NavLink>
+            </li>
+            <li>
+              <NavLink to="/introduce">Introduce</NavLink>
+            </li>
+            <li>
+              <NavLink to="/events-board">Events Board</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
       <nav>
         <ul>
           <li>
