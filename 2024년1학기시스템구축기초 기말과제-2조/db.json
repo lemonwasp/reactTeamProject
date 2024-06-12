@@ -1,16 +1,9 @@
 {
   "boards": [
     {
-      "id": "1",
-      "user-id": 1,
-      "title": "AAAAAAA",
-      "date": "2024-06-01",
-      "description": "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"
-    },
-    {
       "id": "2",
       "title": "TEST",
-      "description": "test\ntest\ntest",
+      "description": "test\ntest\ntest\ntest\n",
       "date": "2024-07-01"
     },
     {
@@ -40,14 +33,6 @@
     }
   ],
   "comments": [
-    {
-      "id": "2",
-      "text": "테스트",
-      "user": "Lim Soyeon",
-      "date": "2024. 6. 11. 오전 12:13:04",
-      "user-id": 1,
-      "board-id": "5"
-    },
     {
       "id": "3",
       "text": "수정",
@@ -90,11 +75,11 @@
     },
     {
       "id": "1",
-      "text": "망했따",
+      "text": "last test",
       "user": "Lim Soyeon",
-      "date": "2024. 6. 11. 오전 12:48:00",
+      "date": "2024. 6. 12. 오후 5:55:34",
       "user-id": 1,
-      "board-id": "6"
+      "board-id": "2"
     }
   ],
   "users": [
