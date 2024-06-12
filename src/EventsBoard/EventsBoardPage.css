@@ -1,0 +1,155 @@
+/* 이벤트 보드 페이지 전체의 스타일 */
+.events-board-page {
+  padding: 20px;
+  background-color: #f8f9fa; /* 배경색 설정 */
+  position: relative; /* 컨텍스트 메뉴의 위치를 상대적으로 설정 */
+}
+
+/* Masonry 그리드 컨테이너 */
+.events-list {
+  margin: 0 10%; /* 양쪽에 여백 설정 */
+}
+
+/* Masonry 레이아웃을 위한 크기 조절 아이템 */
+.event-sizer,
+.event-card {
+  width: calc(33.333% - 20px); /* 각 카드의 너비를 화면의 1/3로 설정, 좌우 여백을 고려 */
+  margin-bottom: 20px; /* 각 카드 사이의 아래쪽 간격 설정 */
+  box-sizing: border-box; /* 패딩과 보더를 포함한 전체 크기를 설정 */
+  transition: all 0.3s ease; /* 모든 속성 변경에 트랜지션 효과 추가 */
+}
+
+/* 이벤트 카드의 스타일 */
+.event-card {
+  background-color: white; /* 배경색 설정 */
+  border-radius: 10px; /* 테두리의 모서리를 둥글게 설정 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 설정 */
+  padding: 20px; /* 내부 패딩 설정 */
+  text-align: left; /* 텍스트를 왼쪽 정렬 */
+}
+
+/* 이벤트 카드의 제목 스타일 */
+.event-card h2 {
+  margin: 0 0 10px 0; /* 아래쪽에만 간격 설정 */
+  font-size: 1.25em; /* 글꼴 크기 설정 */
+}
+
+/* 이벤트 날짜의 스타일 */
+.event-card .event-date {
+  color: grey; /* 글꼴 색상 설정 */
+  font-size: 0.85em; /* 글꼴 크기 설정 */
+  margin: 0 0 10px 0; /* 아래쪽에만 간격 설정 */
+}
+
+/* 이벤트 사용자 스타일 */
+.event-user {
+  color: grey; /* 글꼴 색상 설정 */
+  font-size: 0.85em; /* 글꼴 크기 설정 */
+  margin: 0; /* 간격 없음 */
+}
+
+/* 이벤트 이미지의 스타일 */
+.event-card .event-image {
+  width: 100%; /* 너비를 부모 요소에 맞춤 */
+  border-radius: 5px; /* 테두리의 모서리를 둥글게 설정 */
+  margin: 10px 0; /* 위아래 간격 설정 */
+}
+
+/* 이벤트 설명의 스타일 */
+.event-card .event-description {
+  margin: 10px 0 0 0; /* 위쪽 간격 설정 */
+  font-size: 0.9em; /* 글꼴 크기 설정 */
+  flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+}
+
+/* 이벤트 카드의 좋아요 및 댓글 입력 섹션 */
+.event-actions {
+  display: flex; /* 플렉스 박스 레이아웃 사용 */
+  justify-content: space-between; /* 요소들을 양 끝으로 정렬 */
+  align-items: center; /* 요소들을 세로축 가운데 정렬 */
+  margin-top: 20px; /* 위쪽 간격 설정 */
+}
+
+/* 좋아요 버튼의 스타일 */
+.like-button {
+  background: none; /* 배경 없음 */
+  border: none; /* 테두리 없음 */
+  cursor: pointer; /* 커서 모양을 포인터로 설정 */
+  font-size: 1em; /* 글꼴 크기 설정 */
+  color: #e25555; /* 글꼴 색상 설정 */
+}
+
+/* 댓글 입력 필드의 스타일 */
+.comment-input {
+  flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+  margin-left: 10px; /* 왼쪽 간격 설정 */
+  padding: 5px; /* 내부 패딩 설정 */
+  border-radius: 5px; /* 테두리의 모서리를 둥글게 설정 */
+  border: 1px solid #ccc; /* 테두리 색상 및 두께 설정 */
+}
+
+/* 댓글 추가 버튼의 스타일 */
+.add-comment-button {
+  background: none; /* 배경 없음 */
+  border: 1px solid #007bff; /* 테두리 색상 및 두께 설정 */
+  color: #007bff; /* 글꼴 색상 설정 */
+  border-radius: 5px; /* 테두리의 모서리를 둥글게 설정 */
+  cursor: pointer; /* 커서 모양을 포인터로 설정 */
+  padding: 5px; /* 내부 패딩 설정 */
+  margin-left: 10px; /* 왼쪽 간격 설정 */
+}
+
+/* 댓글 섹션의 스타일 */
+.comments-section {
+  margin-top: 20px; /* 위쪽 간격 설정 */
+}
+
+/* 댓글 리스트의 기본 스타일 */
+.comments-list {
+  max-height: 100px; /* 기본 최대 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤 가능하게 설정 */
+  transition: max-height 0.3s ease; /* 최대 높이 변경에 트랜지션 효과 추가 */
+}
+
+/* 확장된 상태에서 댓글 리스트의 스타일 */
+.comments-list.expanded {
+  max-height: 300px; /* 확장된 상태에서 최대 높이 설정 */
+}
+
+/* 댓글의 스타일 */
+.comment {
+  margin: 5px 0; /* 위아래 간격 설정 */
+}
+
+/* "Show More" 버튼의 스타일 */
+.show-comments-button {
+  background: none; /* 배경 없음 */
+  border: none; /* 테두리 없음 */
+  color: #007bff; /* 글꼴 색상 설정 */
+  cursor: pointer; /* 커서 모양을 포인터로 설정 */
+  margin-top: 10px; /* 위쪽 간격 설정 */
+}
+
+/* 컨텍스트 메뉴의 스타일 */
+.context-menu {
+  position: absolute; /* 위치를 절대적으로 설정 */
+  background-color: white; /* 배경색 설정 */
+  border: 1px solid #ccc; /* 테두리 색상 및 두께 설정 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 설정 */
+  z-index: 1000; /* 다른 요소보다 위에 표시되도록 설정 */
+  display: flex; /* 플렉스 박스 레이아웃 사용 */
+  flex-direction: column; /* 수직 방향으로 정렬 */
+}
+
+.context-menu button {
+  background: none; /* 배경 없음 */
+  border: none; /* 테두리 없음 */
+  padding: 10px; /* 내부 패딩 설정 */
+  text-align: left; /* 텍스트를 왼쪽 정렬 */
+  width: 100%; /* 너비를 부모 요소에 맞춤 */
+  cursor: pointer; /* 커서 모양을 포인터로 설정 */
+}
+
+.context-menu button:hover {
+  background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+}
