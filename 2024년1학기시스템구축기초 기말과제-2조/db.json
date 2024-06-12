@@ -59,9 +59,33 @@
     },
     {
       "id": "2",
-      "text": "진짜 확인",
+      "text": "확인",
       "user": "Lim Soyeon",
       "date": "2024. 6. 12. 오후 9:31:44",
+      "user-id": 1,
+      "board-id": "4"
+    },
+    {
+      "id": "3",
+      "text": "last check",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 12. 오후 9:57:07",
+      "user-id": 1,
+      "board-id": "4"
+    },
+    {
+      "id": "4",
+      "text": "최종",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 12. 오후 9:57:12",
+      "user-id": 1,
+      "board-id": "4"
+    },
+    {
+      "id": "5",
+      "text": "확인",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 12. 오후 9:57:13",
       "user-id": 1,
       "board-id": "4"
     }
@@ -133,7 +157,7 @@
   "members": [
     {
       "id": "1",
-      "name": "홍태관",
+      "name": "홍태관\n",
       "skill": "React",
       "experience": "Any",
       "contact": "Hong@gmail.com",
