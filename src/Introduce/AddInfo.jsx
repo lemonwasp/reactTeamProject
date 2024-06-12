@@ -103,3 +103,6 @@ const AddInfo = ({ onAddBoxInfo, closeModal, initialData }) => {
 };
 
 export default AddInfo;
+
+
+/* test용 */

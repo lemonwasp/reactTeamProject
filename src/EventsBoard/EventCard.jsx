@@ -1,36 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const EventCard = ({ event, onUpdate, onContextMenu }) => {
-  const [commentInput, setCommentInput] = useState('');
-  const [comments, setComments] = useState(event.comments || []);
-  const [showAllComments, setShowAllComments] = useState(false);
-  const [userName, setUserName] = useState('');
+  const [commentInput, setCommentInput] = useState(''); // 댓글 입력 상태
+  const [comments, setComments] = useState(event.comments || []); // 댓글 목록 상태
+  const [showAllComments, setShowAllComments] = useState(false); // 댓글 전체 보기 상태
 
-  const userId = event['user-id'];
+  const userData = JSON.parse(localStorage.getItem('user')); // 로컬 스토리지에서 사용자 데이터 가져오기
 
-  useEffect(() => {
-    const fetchUserName = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/users/${userId}`);
-        if (response.ok) {
-          const user = await response.json();
-          setUserName(user.name);
-        } else {
-          console.error('Failed to fetch user name:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching user name:', error);
-      }
-    };
-    fetchUserName();
-  }, [userId]);
-
-  const userData = JSON.parse(localStorage.getItem('user'));
-
+  // 댓글 입력 필드 변경 핸들러
   const handleCommentChange = (e) => {
     setCommentInput(e.target.value);
   };
 
+  // 댓글 추가 함수
   const handleAddComment = async () => {
     if (commentInput.trim() !== '') {
       const newComment = {
@@ -63,12 +45,14 @@ const EventCard = ({ event, onUpdate, onContextMenu }) => {
     }
   };
 
+  // 엔터 키 입력 시 댓글 추가 함수 호출
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleAddComment();
     }
   };
 
+  // 댓글 전체 보기 토글 함수
   const handleShowComments = () => {
     setShowAllComments(!showAllComments);
     setTimeout(onUpdate, 300);
@@ -80,11 +64,9 @@ const EventCard = ({ event, onUpdate, onContextMenu }) => {
     <div className={`event-card ${showAllComments ? 'expanded' : ''}`}>
       <div onContextMenu={(e) => onContextMenu(e, event, 'event')} className="event-details">
         <h2>{event.title}</h2>
-        <p className="event-user">{userName}</p> {/* 사용자 이름 표시 */}
         <p className="event-date">
           <strong>Date:</strong> {event.date}
         </p>
-        {event.image && <img src={event.image} alt={event.title} className="event-image" />}
         <p className="event-description">
           {event.description.split('\n').map((line, index) => (
             <span key={index}>
