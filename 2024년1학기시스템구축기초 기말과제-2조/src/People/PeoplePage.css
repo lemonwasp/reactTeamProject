@@ -1,0 +1,264 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container-name {
+  width: 100%;
+  margin: 0 auto;
+}
+/*
+header {
+  text-align: center;
+  margin-bottom: 20px;
+} 
+
+header h1 {
+  margin-left: 10%;
+  padding: 10px 0;
+  text-align: left;
+}
+
+header h1 img {
+  height: 100%;
+  width: auto;
+}
+
+nav {
+  height: 50px;
+}
+
+nav ul {
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  box-shadow: 0px 0px 10px 1px black;
+}
+
+nav ul li {
+  margin: 0 5%;
+}
+
+nav ul li a {
+  color: black;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: block;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+  border-radius: 20%;
+  background-color: #f5f4df;
+}  */
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-member {
+  border-radius: 1430px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  height: 200px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.team-member.left .img-Box {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 200px;
+  height: 100%;
+  border-radius: 70%;
+  overflow: hidden;
+  margin-right: 20px;
+  order: 0;
+}
+
+.team-member.right .img-Box {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 200px;
+  height: 100%;
+  border-radius: 70%;
+  overflow: hidden;
+  margin-left: 20px;
+  order: 1;
+}
+
+.img-Box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member .info {
+  flex-grow: 1;
+  position: relative;
+}
+
+.info div{
+  display : inline-block;
+  width: 30%;
+  margin-bottom: 1%;
+  padding-left: 3%;
+}
+.info .hobbie-box{
+  float: right;
+  position: absolute;
+  left: 66%;
+}
+
+.team-member.highlighted {
+  border: 2px solid #007bff;
+}
+
+.btn {
+  text-align: center;
+  font-size: 50px;
+  border-radius: 1430px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  height: 200px;
+  margin-bottom: 20px;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.submit{
+  align-items: center;
+  display: inline-block;
+}
+
+.update{
+  height: 100%;
+}
+.update div{
+  width: 30%;
+  display : inline-block;
+  padding-top: 4%;
+  margin-bottom: 1%;
+  padding-left: 3%;
+  height: 10%;
+}
+.update div textarea{
+  resize: none;
+  width: 70%;
+  margin-left: 5%;
+}
+.P-modal-back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(38, 38, 38, 0.75); 
+}
+
+.P-modal-wrap {
+  position: fixed;
+  top : 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 90%;
+  z-index: 100;
+  overflow: hidden;
+  background-color: rgb(248, 248, 248);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.P-modal-wrap header {
+  background-color: rgb(228, 69, 20);
+  position: fixed;
+  top : 0;
+  width: 100%;
+  color: white;
+  padding-left: 30px;
+}
+
+.P-modal-wrap header h2 {
+  margin-bottom: 13px;
+}
+
+.P-modal-wrap .content {
+  padding-top: 30px;
+  height: 80%;
+  width: 100%;
+  padding-left: 30%;
+}
+
+.modal-wrap footer {
+  align-self: flex-end;
+  padding-top: 20px;
+}
+
+.P-modal-wrap footer button {
+  padding: 8px 35px;
+  background-color: rgb(1, 206, 11);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+#P-x-btn {
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  right: 3%;
+  font-size: 1.5rem;
+  padding: 10px;
+}
+
+#visible-form-btn {
+  background-color: rgb(1, 206, 11);
+  padding: 30px 60px;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-family: 'Noto Serif KR', serif;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.modal-wrap .content div {
+  height: 15%;
+  width: 80%;
+  
+}
+
+.modal-wrap .content div div{
+  padding-top: 1%;
+  height: 50%;
+}
+
+.modal-wrap .content div div textarea{
+  resize: none;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}

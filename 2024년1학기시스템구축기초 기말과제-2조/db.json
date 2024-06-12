@@ -157,8 +157,64 @@
     {
       "id": "3",
       "categoryName": "교통편",
-      "description": "도톤보리, 덴덴타운, 유니버셜 스튜디오, ...",
+      "description": "비행기, 차량, 버스, 전철, ...",
       "imageUrl": "https://cdn.pixabay.com/photo/2020/05/30/01/03/shinkansen-5237269_1280.jpg"
+    }
+  ],
+  "members": [
+    {
+      "id": "1",
+      "name": "홍태관",
+      "skill": "React",
+      "experience": "Any",
+      "contact": "Hong@gmail.com",
+      "hobbie": "Reading",
+      "img": "/images/profile.jpg"
+    },
+    {
+      "id": "2",
+      "name": "임소연",
+      "skill": "React",
+      "experience": "Any",
+      "contact": "dlat.th45@gmail.com",
+      "hobbie": "Any",
+      "img": "/images/profile.jpg"
+    },
+    {
+      "id": "3",
+      "name": "권기현",
+      "skill": "React",
+      "experience": "Any",
+      "contact": "Kwon@gmail.com",
+      "hobbie": "Any",
+      "img": "/images/profile.jpg"
+    },
+    {
+      "id": "4",
+      "name": "최현서",
+      "skill": "React",
+      "experience": "Any",
+      "contact": "Choi@gmail.com",
+      "hobbie": "Any",
+      "img": "/images/profile.jpg"
+    },
+    {
+      "id": "5",
+      "name": "박유진",
+      "skill": "React",
+      "experience": "Any",
+      "contact": "Park@gmail.com",
+      "hobbie": "Any",
+      "img": "/images/profile.jpg"
+    },
+    {
+      "id": "6",
+      "name": "장정은",
+      "skill": "React",
+      "experience": "Any",
+      "contact": "Jang@gmail.com",
+      "hobbie": "Any",
+      "img": "/images/profile.jpg"
     }
   ]
 }
