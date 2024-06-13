@@ -55,7 +55,16 @@
       "date": "2024-06-24"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "id": "1",
+      "text": "조별 과제로 제출한 PPT 정리하기",
+      "user": "Lim Soyeon",
+      "date": "2024. 6. 13. 오후 12:47:50",
+      "user-id": 1,
+      "board-id": "7"
+    }
+  ],
   "users": [
     {
       "user-id": 1,

@@ -23,7 +23,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 40%;
-  height: 80%;
+  height: 80vh;
   position: relative;
 }
 
@@ -65,7 +65,7 @@
 
 .create-post-form textarea {
   resize: none;
-  height: 500px;
+  height: 45vh;
 }
 
 .create-post-form button {
