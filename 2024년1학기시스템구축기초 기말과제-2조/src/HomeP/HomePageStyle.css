@@ -172,12 +172,12 @@
   background-color: white;
   float: left;
   border-radius: 15px;
-  box-shadow: 1px 1px 6px 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 20%;
 }
 
 .some2 {
-  padding-top: 1%;
+  padding-top: 2%;
   padding-bottom: 2%;
   width: 100%;
   height: 20%;
