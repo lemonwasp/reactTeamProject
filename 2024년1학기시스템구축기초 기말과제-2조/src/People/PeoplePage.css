@@ -9,54 +9,6 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-/*
-header {
-  text-align: center;
-  margin-bottom: 20px;
-} 
-
-header h1 {
-  margin-left: 10%;
-  padding: 10px 0;
-  text-align: left;
-}
-
-header h1 img {
-  height: 100%;
-  width: auto;
-}
-
-nav {
-  height: 50px;
-}
-
-nav ul {
-  height: 100%;
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  box-shadow: 0px 0px 10px 1px black;
-}
-
-nav ul li {
-  margin: 0 5%;
-}
-
-nav ul li a {
-  color: black;
-  text-decoration: none;
-  padding: 15px 20px;
-  display: block;
-}
-
-nav ul li a.active,
-nav ul li a:hover {
-  border-radius: 20%;
-  background-color: #f5f4df;
-}  */
 
 main {
   display: flex;
@@ -111,13 +63,13 @@ main {
   position: relative;
 }
 
-.info div{
-  display : inline-block;
+.info div {
+  display: inline-block;
   width: 30%;
   margin-bottom: 1%;
   padding-left: 3%;
 }
-.info .hobbie-box{
+.info .hobbie-box {
   float: right;
   position: absolute;
   left: 66%;
@@ -142,27 +94,28 @@ main {
   justify-content: space-between;
 }
 
-.submit{
+.submit {
   align-items: center;
   display: inline-block;
 }
 
-.update{
+.update {
   height: 100%;
 }
-.update div{
+.update div {
   width: 30%;
-  display : inline-block;
+  display: inline-block;
   padding-top: 4%;
   margin-bottom: 1%;
   padding-left: 3%;
   height: 10%;
 }
-.update div textarea{
+.update div textarea {
   resize: none;
   width: 70%;
   margin-left: 5%;
 }
+
 .P-modal-back {
   position: fixed;
   top: 0;
@@ -170,12 +123,12 @@ main {
   width: 100%;
   height: 100vh;
   z-index: 10;
-  background: rgba(38, 38, 38, 0.75); 
+  background: rgba(38, 38, 38, 0.75);
 }
 
 .P-modal-wrap {
   position: fixed;
-  top : 5%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
@@ -193,7 +146,7 @@ main {
 .P-modal-wrap header {
   background-color: rgb(228, 69, 20);
   position: fixed;
-  top : 0;
+  top: 0;
   width: 100%;
   color: white;
   padding-left: 30px;
@@ -248,15 +201,14 @@ main {
 .modal-wrap .content div {
   height: 15%;
   width: 80%;
-  
 }
 
-.modal-wrap .content div div{
+.modal-wrap .content div div {
   padding-top: 1%;
   height: 50%;
 }
 
-.modal-wrap .content div div textarea{
+.modal-wrap .content div div textarea {
   resize: none;
   width: 100%;
   height: 100%;
