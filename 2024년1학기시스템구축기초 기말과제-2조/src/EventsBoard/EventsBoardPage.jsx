@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Masonry from 'masonry-layout';
-import imagesLoaded from 'imagesloaded';
 import { useNavigate, useLocation } from 'react-router-dom';
 import EventCard from './EventCard';
 import './EventsBoardPage.css';
@@ -26,29 +25,33 @@ const EventsBoardPage = () => {
       comments: commentsRes.filter((comment) => comment['board-id'] === event.id),
     }));
 
-    setEvents(eventsWithComments);
+    // 날짜를 기준으로 이벤트 정렬
+    eventsWithComments.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    // Masonry 레이아웃 초기화
-    msnry.current = new Masonry(gridRef.current, {
-      itemSelector: '.event-card',
-      columnWidth: '.event-sizer',
-      percentPosition: true,
-      gutter: 20,
-    });
+    setEvents(eventsWithComments);
   };
 
-  // 이미지 로드 완료 후 Masonry 레이아웃 적용
-  useEffect(() => {
-    imagesLoaded(gridRef.current, () => {
-      if (msnry.current) {
-        msnry.current.layout();
-      }
-    });
-  }, [events]);
+  // Masonry 레이아웃 초기화 함수
+  const initMasonry = () => {
+    if (gridRef.current && !msnry.current) {
+      msnry.current = new Masonry(gridRef.current, {
+        itemSelector: '.event-card',
+        columnWidth: '.event-sizer',
+        percentPosition: true,
+        gutter: 20,
+      });
+    } else if (msnry.current) {
+      msnry.current.reloadItems();
+      msnry.current.layout();
+    }
+  };
 
-  // 컴포넌트 마운트 시 데이터 가져오기
+  // 컴포넌트 마운트 시 데이터 가져오기 및 Masonry 초기화
   useEffect(() => {
-    getData();
+    getData().then(() => {
+      setTimeout(initMasonry, 100); // 약간의 지연 시간 후 Masonry 초기화
+    });
+
     return () => {
       if (msnry.current) {
         msnry.current.destroy();
@@ -56,21 +59,24 @@ const EventsBoardPage = () => {
     };
   }, []);
 
-  // 위치 상태 업데이트 시 이벤트 상태 업데이트
+  // 위치 상태 업데이트 시 이벤트 상태 업데이트 및 Masonry 재적용
   useEffect(() => {
     if (location.state && location.state.updatedEvent) {
       const updatedEvent = location.state.updatedEvent;
       setEvents((prevEvents) =>
         prevEvents.map((event) => (event.id === updatedEvent.id ? { ...event, ...updatedEvent } : event))
       );
+      setTimeout(initMasonry, 100); // Masonry 재적용
     }
   }, [location.state]);
 
   // Masonry 레이아웃 업데이트 함수
   const handleUpdateLayout = () => {
-    if (msnry.current) {
-      msnry.current.layout();
-    }
+    setTimeout(() => {
+      if (msnry.current) {
+        msnry.current.layout();
+      }
+    }, 100);
   };
 
   // 컨텍스트 메뉴 표시 함수
@@ -124,6 +130,14 @@ const EventsBoardPage = () => {
       if (contextMenu.type === 'event') {
         const confirmDelete = window.confirm('이 게시글을 삭제하시겠습니까?');
         if (confirmDelete) {
+          // 댓글 삭제 로직 추가
+          const commentsRes = await fetch(`http://localhost:3001/comments?board-id=${contextMenu.target.id}`);
+          const comments = await commentsRes.json();
+          for (const comment of comments) {
+            await fetch(`http://localhost:3001/comments/${comment.id}`, {
+              method: 'DELETE',
+            });
+          }
           const response = await fetch(`http://localhost:3001/boards/${contextMenu.target.id}`, {
             method: 'DELETE',
           });

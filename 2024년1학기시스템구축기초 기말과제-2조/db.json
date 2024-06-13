@@ -55,32 +55,7 @@
       "date": "2024-06-24"
     }
   ],
-  "comments": [
-    {
-      "id": "1",
-      "text": "전체적인 CSS 점검",
-      "user": "Lim Soyeon",
-      "date": "2024. 6. 13. 오전 11:11:01",
-      "user-id": 1,
-      "board-id": "2"
-    },
-    {
-      "id": "2",
-      "text": "PPT 각자 페이지 만들기",
-      "user": "Lim Soyeon",
-      "date": "2024. 6. 13. 오전 11:11:10",
-      "user-id": 1,
-      "board-id": "2"
-    },
-    {
-      "id": "3",
-      "text": "각 페이지 내용 정리하기",
-      "user": "Lim Soyeon",
-      "date": "2024. 6. 13. 오전 11:11:20",
-      "user-id": 1,
-      "board-id": "2"
-    }
-  ],
+  "comments": [],
   "users": [
     {
       "user-id": 1,
