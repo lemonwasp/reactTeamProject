@@ -154,14 +154,7 @@ function HomePage() {
             <button className="submit-button" onClick={handleSubmit}>
               {editingScheduleId ? '수정' : '추가'}
             </button>
-            {editingScheduleId && (
-              <button
-                className="delete-button"
-                onClick={() => handleDelete(formatDate(selectedModalDate), editingScheduleId)}
-              >
-                삭제
-              </button>
-            )}
+
             <div className="schedule-list">
               <h2>일정 목록</h2>
               {Object.keys(scheduleData).map((date) => (
