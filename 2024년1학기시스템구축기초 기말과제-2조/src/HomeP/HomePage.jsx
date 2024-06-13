@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import './HomePageStyle.css';
 import ScheduleBtn from './button-img.png';
@@ -11,6 +11,23 @@ function HomePage() {
   const [selectedModalDate, setSelectedModalDate] = useState(new Date());
   const [scheduleData, setScheduleData] = useState({});
   const [editingScheduleId, setEditingScheduleId] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/scheduleList')
+      .then(response => response.json())
+      .then(data => {
+        const scheduleObj = {};
+        data.forEach(schedule => {
+          const { date, id, title, content } = schedule;
+          if (!scheduleObj[date]) {
+            scheduleObj[date] = [];
+          }
+          scheduleObj[date].push({ id, title, content });
+        });
+        setScheduleData(scheduleObj);
+      })
+      .catch(error => console.error('Error fetching schedule data:', error));
+  }, []);
 
   const onChange = (date) => {
     setSelectedDate(date);
@@ -45,37 +62,64 @@ function HomePage() {
 
   const handleSubmit = () => {
     const formattedDate = formatDate(selectedModalDate);
-    const newScheduleData = { ...scheduleData };
+    const newSchedule = { title, content, date: formattedDate };
 
     if (editingScheduleId) {
-      newScheduleData[formattedDate] = newScheduleData[formattedDate].map((schedule) =>
-        schedule.id === editingScheduleId ? { id: editingScheduleId, title, content } : schedule
-      );
-      setEditingScheduleId(null);
+      fetch(`http://localhost:3001/scheduleList/${editingScheduleId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSchedule),
+      })
+        .then(response => response.json())
+        .then(updatedSchedule => {
+          const newScheduleData = { ...scheduleData };
+          newScheduleData[formattedDate] = newScheduleData[formattedDate].map((schedule) =>
+            schedule.id === editingScheduleId ? updatedSchedule : schedule
+          );
+          setScheduleData(newScheduleData);
+          closeModal();
+        })
+        .catch(error => console.error('Error updating schedule:', error));
     } else {
-      const newId = new Date().getTime(); // Generate a unique ID based on timestamp
-      const newSchedule = { id: newId, title, content };
-
-      if (newScheduleData[formattedDate]) {
-        newScheduleData[formattedDate].push(newSchedule);
-      } else {
-        newScheduleData[formattedDate] = [newSchedule];
-      }
+      fetch('http://localhost:3001/scheduleList', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSchedule),
+      })
+        .then(response => response.json())
+        .then(createdSchedule => {
+          const newScheduleData = { ...scheduleData };
+          if (newScheduleData[formattedDate]) {
+            newScheduleData[formattedDate].push(createdSchedule);
+          } else {
+            newScheduleData[formattedDate] = [createdSchedule];
+          }
+          setScheduleData(newScheduleData);
+          closeModal();
+        })
+        .catch(error => console.error('Error creating schedule:', error));
     }
-
-    setScheduleData(newScheduleData);
-    closeModal();
   };
 
   const handleDelete = (date, id) => {
-    const newScheduleData = { ...scheduleData };
-    newScheduleData[date] = newScheduleData[date].filter((schedule) => schedule.id !== id);
+    fetch(`http://localhost:3001/scheduleList/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        const newScheduleData = { ...scheduleData };
+        newScheduleData[date] = newScheduleData[date].filter((schedule) => schedule.id !== id);
 
-    if (newScheduleData[date].length === 0) {
-      delete newScheduleData[date];
-    }
+        if (newScheduleData[date].length === 0) {
+          delete newScheduleData[date];
+        }
 
-    setScheduleData(newScheduleData);
+        setScheduleData(newScheduleData);
+      })
+      .catch(error => console.error('Error deleting schedule:', error));
   };
 
   const handleEdit = (date, id) => {

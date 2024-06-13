@@ -152,9 +152,9 @@
       "id": "4",
       "name": "최현서",
       "skill": "React",
-      "experience": "Any",
-      "contact": "Choi@gmail.com",
-      "hobbie": "Any",
+      "experience": "Logic Legends",
+      "contact": "Choi@gmail.com | 010-4357-7272",
+      "hobbie": "activity sports",
       "img": "/images/profile.jpg"
     },
     {
@@ -175,5 +175,6 @@
       "hobbie": "Any",
       "img": "/images/profile.jpg"
     }
-  ]
+  ],
+  "scheduleList": []
 }
