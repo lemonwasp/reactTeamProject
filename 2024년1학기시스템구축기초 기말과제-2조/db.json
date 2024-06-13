@@ -185,5 +185,24 @@
       "img": "/images/profile.jpg"
     }
   ],
-  "scheduleList": []
+  "scheduleList": [
+    {
+      "id": "3de0",
+      "title": "성윤이 탄생일",
+      "content": "와!! 축하해!",
+      "date": "2024-06-08"
+    },
+    {
+      "id": "647d",
+      "title": "예종이 생일",
+      "content": "황민호 포항좀 와라",
+      "date": "2024-06-16"
+    },
+    {
+      "id": "5b24",
+      "title": "지웠나?",
+      "content": "해치웠나",
+      "date": "2024-06-01"
+    }
+  ]
 }

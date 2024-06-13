@@ -201,7 +201,7 @@ function HomePage() {
 
             <div className="schedule-list">
               <h2>일정 목록</h2>
-              {Object.keys(scheduleData).map((date) => (
+              {Object.keys(scheduleData).sort().map((date) => (
                 <div key={date} className="schedule-item">
                   <h3>{date}</h3>
                   {scheduleData[date].map((schedule) => (
