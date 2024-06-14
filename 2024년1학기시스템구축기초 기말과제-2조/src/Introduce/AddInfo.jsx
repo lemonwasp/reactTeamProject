@@ -86,7 +86,7 @@ const AddInfo = ({ onAddBoxInfo, closeModal, initialData }) => {
           placeholder="설명"
           onChange={changeListener}
           value={inputs.description}
-          rows="5"
+          rows="17"
           style={{ width: '100%' }}
         />
         <input
