@@ -33,21 +33,6 @@ const PeoplePage = () => {
 
   return (
     <div className="container-name">
-      {/* <header>
-        <h1>
-          <img src='./people.jpg' alt="Team" />
-          Team Name
-        </h1>
-        <nav>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#" className="active">People</a></li>
-            <li><a href="#">Introduce</a></li>
-            <li><a href="#">Events Board</a></li>
-          </ul>
-        </nav>
-      </header>  */}
-      <main>
         {userlist.map((e, num) => (
           <People
             key={e.id}
@@ -58,7 +43,6 @@ const PeoplePage = () => {
           />
         ))}
         <AddPeople people={userlist} addUserListener={addUserListener} />
-      </main>
     </div>
   );
 };
