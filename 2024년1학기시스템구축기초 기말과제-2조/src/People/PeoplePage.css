@@ -8,9 +8,6 @@ body {
 .container-name {
   width: 100%;
   margin: 0 auto;
-}
-
-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,13 +60,13 @@ main {
   position: relative;
 }
 
-.info div {
-  display: inline-block;
+.info div{
+  display : inline-block;
   width: 30%;
   margin-bottom: 1%;
   padding-left: 3%;
 }
-.info .hobbie-box {
+.info .hobbie-box{
   float: right;
   position: absolute;
   left: 66%;
@@ -94,28 +91,27 @@ main {
   justify-content: space-between;
 }
 
-.submit {
+.submit{
   align-items: center;
   display: inline-block;
 }
 
-.update {
+.P-update{
   height: 100%;
 }
-.update div {
+.P-update div{
   width: 30%;
-  display: inline-block;
-  padding-top: 4%;
-  margin-bottom: 1%;
+  display : inline-block;
+  padding-top: 2%;
+  margin-bottom: 0.5%;
   padding-left: 3%;
   height: 10%;
 }
-.update div textarea {
+.P-update div textarea{
   resize: none;
-  width: 70%;
+  width: 60%;
   margin-left: 5%;
 }
-
 .P-modal-back {
   position: fixed;
   top: 0;
@@ -123,12 +119,12 @@ main {
   width: 100%;
   height: 100vh;
   z-index: 10;
-  background: rgba(38, 38, 38, 0.75);
+  background: rgba(38, 38, 38, 0.75); 
 }
 
 .P-modal-wrap {
   position: fixed;
-  top: 5%;
+  top : 5%;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
@@ -146,7 +142,7 @@ main {
 .P-modal-wrap header {
   background-color: rgb(228, 69, 20);
   position: fixed;
-  top: 0;
+  top : 0;
   width: 100%;
   color: white;
   padding-left: 30px;
@@ -163,7 +159,7 @@ main {
   padding-left: 30%;
 }
 
-.modal-wrap footer {
+.P-modal-wrap footer {
   align-self: flex-end;
   padding-top: 20px;
 }
@@ -198,17 +194,18 @@ main {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.modal-wrap .content div {
+.P-modal-wrap .content div {
   height: 15%;
   width: 80%;
+  
 }
 
-.modal-wrap .content div div {
+.P-modal-wrap .content div div{
   padding-top: 1%;
   height: 50%;
 }
 
-.modal-wrap .content div div textarea {
+.P-modal-wrap .content div div textarea{
   resize: none;
   width: 100%;
   height: 100%;
