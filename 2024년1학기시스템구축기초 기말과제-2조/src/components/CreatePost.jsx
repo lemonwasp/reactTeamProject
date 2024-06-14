@@ -66,10 +66,7 @@ const CreatePost = () => {
   return (
     <div className="create-post-page">
       <div className="create-post-header" onClick={handleHeaderClick} style={{ cursor: 'pointer' }}>
-        <h1>
-          <img src={`${process.env.PUBLIC_URL}/images/people.png`} alt="Team Logo" className="team-logo" />
-          Team Name
-        </h1>
+        <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Team Logo" className="team-logo" />
       </div>
       <div className="create-post-name">
         <h2>{location.state && location.state.event ? 'Edit Post' : 'Create Post'}</h2>

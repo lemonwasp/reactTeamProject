@@ -7,10 +7,7 @@ const NavBar = () => {
 
   return (
     <header>
-      <h1>
-        <img src={`${process.env.PUBLIC_URL}/images/people.png`} alt="Team Logo" />
-        Team Name
-      </h1>
+      <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Team Logo" />
       <nav>
         <ul>
           <li>

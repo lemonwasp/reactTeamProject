@@ -15,15 +15,11 @@ header {
   margin-bottom: 20px;
 }
 
-header h1 {
-  margin-left: 10%;
-  padding: 10px 0;
-  text-align: left;
-}
-
-header h1 img {
-  height: 100%;
+header img {
+  height: 70px;
   width: auto;
+  margin: 1% 0 0.8% 0;
+  align-items: left;
 }
 
 .bar nav {

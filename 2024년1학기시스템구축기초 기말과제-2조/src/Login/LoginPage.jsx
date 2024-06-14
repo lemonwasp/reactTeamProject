@@ -33,8 +33,8 @@ const LoginPage = () => {
     <div className="login-page">
       <form onSubmit={handleSubmit} className="login-form">
         <div className="login-header">
-          <img src={`${process.env.PUBLIC_URL}/images/people.png`} alt="Logo" />
-          <h2>Log In</h2>
+          <img src={`${process.env.PUBLIC_URL}/images/logo.png`} alt="Logo" />
+          <h1>Log In</h1>
         </div>
         {error && <p className="error">{error}</p>}
         <div className="form-group-header">

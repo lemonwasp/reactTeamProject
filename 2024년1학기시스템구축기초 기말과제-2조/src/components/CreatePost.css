@@ -11,7 +11,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 35px;
+  height: 10%;
+  width: auto;
+  margin-bottom: 30px;
 }
 
 .create-post-container {
