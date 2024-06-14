@@ -60,13 +60,13 @@ body {
   position: relative;
 }
 
-.info div{
-  display : inline-block;
+.info div {
+  display: inline-block;
   width: 30%;
   margin-bottom: 1%;
   padding-left: 3%;
 }
-.info .hobbie-box{
+.info .hobbie-box {
   float: right;
   position: absolute;
   left: 66%;
@@ -91,23 +91,23 @@ body {
   justify-content: space-between;
 }
 
-.submit{
+.submit {
   align-items: center;
   display: inline-block;
 }
 
-.P-update{
+.P-update {
   height: 100%;
 }
-.P-update div{
+.P-update div {
   width: 30%;
-  display : inline-block;
+  display: inline-block;
   padding-top: 2%;
   margin-bottom: 0.5%;
   padding-left: 3%;
   height: 10%;
 }
-.P-update div textarea{
+.P-update div textarea {
   resize: none;
   width: 60%;
   margin-left: 5%;
@@ -119,12 +119,12 @@ body {
   width: 100%;
   height: 100vh;
   z-index: 10;
-  background: rgba(38, 38, 38, 0.75); 
+  background: rgba(38, 38, 38, 0.75);
 }
 
 .P-modal-wrap {
   position: fixed;
-  top : 5%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
@@ -142,7 +142,7 @@ body {
 .P-modal-wrap header {
   background-color: rgb(228, 69, 20);
   position: fixed;
-  top : 0;
+  top: 0;
   width: 100%;
   color: white;
   padding-left: 30px;
@@ -197,15 +197,14 @@ body {
 .P-modal-wrap .content div {
   height: 15%;
   width: 80%;
-  
 }
 
-.P-modal-wrap .content div div{
+.P-modal-wrap .content div div {
   padding-top: 1%;
   height: 50%;
 }
 
-.P-modal-wrap .content div div textarea{
+.P-modal-wrap .content div div textarea {
   resize: none;
   width: 100%;
   height: 100%;
