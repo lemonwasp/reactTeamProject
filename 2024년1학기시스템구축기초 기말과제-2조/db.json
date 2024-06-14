@@ -58,52 +58,76 @@
   "comments": [
     {
       "id": "1",
-      "text": "조별 과제로 제출한 PPT 정리하기",
-      "user": "Lim Soyeon",
-      "date": "2024. 6. 13. 오후 12:47:50",
+      "text": "css 수정",
+      "user": "HONGTAEGWAN",
+      "date": "2024. 6. 14. 오후 1:52:40",
+      "user-id": 2,
+      "board-id": "2"
+    },
+    {
+      "id": "2",
+      "text": "db.json 수정",
+      "user": "LIMSOYEON",
+      "date": "2024. 6. 14. 오후 1:53:12",
+      "user-id": 1,
+      "board-id": "2"
+    },
+    {
+      "id": "1",
+      "text": "조별 PPT 문제 정리해서 보기",
+      "user": "LIMSOYEON",
+      "date": "2024. 6. 14. 오후 1:53:23",
       "user-id": 1,
       "board-id": "7"
+    },
+    {
+      "id": "1",
+      "text": "망",
+      "user": "LIMSOYEON",
+      "date": "2024. 6. 14. 오후 1:53:31",
+      "user-id": 1,
+      "board-id": "8"
     }
   ],
   "users": [
     {
       "user-id": 1,
-      "name": "Lim Soyeon",
+      "name": "LIMSOYEON",
       "email": "dlat.th45@gmail.com",
       "password": "dlathdus",
       "id": "3aad"
     },
     {
       "user-id": 2,
-      "name": "Hong",
+      "name": "HONGTAEGWAN",
       "email": "Hong@gmail.com",
       "password": "1234",
       "id": "ce21"
     },
     {
       "user-id": 3,
-      "name": "Kwon",
+      "name": "GWONGIHYEON",
       "email": "Kwon@gmail.com",
       "password": "1234",
       "id": "03a7"
     },
     {
       "user-id": 4,
-      "name": "Park",
+      "name": "PARKYUJIN",
       "email": "Park@gmail.com",
       "password": "1234",
       "id": "7742"
     },
     {
       "user-id": 5,
-      "name": "Choi",
+      "name": "CHOEHYEONSEO",
       "email": "Choi@gmail.com",
       "password": "1234",
       "id": "5bec"
     },
     {
       "user-id": 6,
-      "name": "Jang",
+      "name": "JANGJEONGEUN",
       "email": "Jang@gmail.com",
       "password": "1234",
       "id": "743f"
@@ -132,12 +156,12 @@
   "members": [
     {
       "id": "1",
-      "name": "홍태관\n",
+      "name": "홍태관",
       "skill": "React",
       "experience": "Any",
       "contact": "Hong@gmail.com",
       "hobbie": "Reading",
-      "img": "/images/profile.jpg"
+      "img": "/images/HONG.jpeg"
     },
     {
       "id": "2",
@@ -146,7 +170,7 @@
       "experience": "Team [bapul]",
       "contact": "dlat.th45@gmail.com | 010-6604-3960",
       "hobbie": "Cook, Explore designs",
-      "img": "/images/profile.jpg"
+      "img": "/images/LIM.jpeg"
     },
     {
       "id": "3",
@@ -164,7 +188,7 @@
       "experience": "Logic Legends",
       "contact": "Choi@gmail.com | 010-4357-7272",
       "hobbie": "activity sports",
-      "img": "/images/profile.jpg"
+      "img": "/images/CHOI.jpeg"
     },
     {
       "id": "5",
@@ -199,10 +223,10 @@
       "date": "2024-06-16"
     },
     {
-      "id": "5b24",
-      "title": "지웠나?",
-      "content": "해치웠나",
-      "date": "2024-06-01"
+      "id": "e1e9",
+      "title": "종강",
+      "content": "\n",
+      "date": "2024-06-26"
     }
   ]
 }
