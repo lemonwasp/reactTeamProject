@@ -35,7 +35,7 @@ const AddPeople = (props) => {
             setScreen(!screen);
           }}
         >
-          <div className='update'>
+          <div className='P-update'>
             <div>
               <textarea type="text" id='name' placeholder='name' />
             </div>
