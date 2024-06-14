@@ -87,6 +87,30 @@
       "date": "2024. 6. 14. 오후 1:53:31",
       "user-id": 1,
       "board-id": "8"
+    },
+    {
+      "id": "3",
+      "text": "package.json 수정",
+      "user": "LIMSOYEON",
+      "date": "2024. 6. 14. 오후 3:03:17",
+      "user-id": 1,
+      "board-id": "2"
+    },
+    {
+      "id": "5",
+      "text": "Calendar 체크",
+      "user": "GWONGIHYEON",
+      "date": "2024. 6. 14. 오후 3:04:37",
+      "user-id": 3,
+      "board-id": "2"
+    },
+    {
+      "id": "6",
+      "text": "npm i 체크",
+      "user": "LIMSOYEON",
+      "date": "2024. 6. 14. 오후 3:05:24",
+      "user-id": 1,
+      "board-id": "2"
     }
   ],
   "users": [
