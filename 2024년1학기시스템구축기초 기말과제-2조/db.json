@@ -199,11 +199,11 @@
     {
       "id": "3",
       "name": "권기현",
-      "skill": "Nothing",
+      "skill": "React, throw snail",
       "experience": "Logic Legends",
       "contact": "Kwon@gmail.com | 010-8890-6505",
       "hobbie": "Singing",
-      "img": "/images/profile.jpg"
+      "img": "/images/KWON.jpeg"
     },
     {
       "id": "4",
@@ -227,10 +227,10 @@
       "id": "6",
       "name": "장정은",
       "skill": "React",
-      "experience": "Any",
-      "contact": "Jang@gmail.com",
-      "hobbie": "Any",
-      "img": "/images/profile.jpg"
+      "experience": "Logic Legends",
+      "contact": "Jang@gmail.com | 010-6765-1023",
+      "hobbie": "shopping",
+      "img": "/images/JANG.jpeg"
     }
   ],
   "scheduleList": [
